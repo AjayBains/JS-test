@@ -1,28 +1,31 @@
 // Write Javascript Here
 
-const baseUrl = "http://localhost:3000/users";
+const baseUrl = "http://localhost:3010/users";
 const headers = {
   "Content-type": "application/json; charset=UTF-8",
 };
 
-getUsersRequest().then((users) => {
+const usersDisplay = getUsersRequest().then((users) => {
   //This function has been implemented already for you
   const tableEl = document.getElementById("table");
+
   for (const user of users) {
     tableEl.appendChild(createTableRow(user));
   }
 });
+window.addEventListener("DOMContentLoaded", usersDisplay);
 let addButton = document.getElementById("add_button");
 let table = document.getElementById("table");
-addButton.addEventListener("click", addNewUser);
 
-function addNewUser() {
+addNewUser = async () => {
   const user = {
-    name: prompt("Add new"),
-    id: Date.now(),
+    name: prompt("Add new User"),
   };
-  createTableRow(user);
-}
+
+  await createUserRequest(user);
+};
+
+addButton.addEventListener("click", addNewUser);
 
 function editUser(id, userName) {
   //TODO: implement me
