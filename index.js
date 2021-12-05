@@ -1,6 +1,6 @@
 // Write Javascript Here
 
-const baseUrl = "http://localhost:3010/users";
+const baseUrl = "http://localhost:3000/users";
 const headers = {
   "Content-type": "application/json; charset=UTF-8",
 };
@@ -14,27 +14,30 @@ const usersDisplay = getUsersRequest().then((users) => {
   }
 });
 
+// Display users on windows loading
 window.addEventListener("DOMContentLoaded", usersDisplay);
-let addButton = document.getElementById("add_button");
-let table = document.getElementById("table");
 
-addNewUser = async () => {
+let addButton = document.getElementById("add_button");
+
+addNewUser = () => {
+  // Create a username from the prompt input
   const user = {
     name: prompt("Add new User"),
   };
-
-  await createUserRequest(user);
+  // create user
+  createUserRequest(user);
 };
 
+// add new user deatils to add a new user
 addButton.addEventListener("click", addNewUser);
 
-async function editUser(id, userName) {
+function editUser(id, userName) {
   //TODO: implement me
   const user = {
-    name: prompt("User"),
+    name: prompt("Edit User"),
     id,
   };
-  await updateUserRequest(user);
+  updateUserRequest(user);
 }
 
 function deleteUser(id) {
