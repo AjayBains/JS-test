@@ -13,6 +13,7 @@ const usersDisplay = getUsersRequest().then((users) => {
     tableEl.appendChild(createTableRow(user));
   }
 });
+
 window.addEventListener("DOMContentLoaded", usersDisplay);
 let addButton = document.getElementById("add_button");
 let table = document.getElementById("table");
@@ -27,12 +28,18 @@ addNewUser = async () => {
 
 addButton.addEventListener("click", addNewUser);
 
-function editUser(id, userName) {
+async function editUser(id, userName) {
   //TODO: implement me
+  const user = {
+    name: prompt("User"),
+    id,
+  };
+  await updateUserRequest(user);
 }
 
 function deleteUser(id) {
   //TODO: implement me
+  deleteUserRequest(id);
 }
 
 //CRUD HELPER METHODS
