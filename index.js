@@ -29,7 +29,6 @@ addNewUser = () => {
 };
 
 // add new user deatils to add a new user
-addButton.addEventListener("click", addNewUser);
 
 function editUser(id, userName) {
   //TODO: implement me
